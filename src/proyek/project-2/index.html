@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PT. Ajun Arfianto — Solusi Industri Modern (v2)</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #f59e0b; /* amber-400 */
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg,#000,#050507);
+      color: #f5f5f5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* glass */
+    .glass {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* small shake */
+    @keyframes shake { 25%,75% { transform: translateX(-5px); } 50%{ transform: translateX(5px);} }
+    .animate-shake { animation: shake .36s ease; }
+
+    /* fade-in utility (use by adding 'fade-in' class) */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px) scale(.995); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .fade-in { animation: fadeUp .6s cubic-bezier(.2,.9,.3,1) both; }
+
+    /* hero video styling */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      transform: scale(1.02); /* subtle zoom for cinematic feel */
+    }
+
+    /* translucent overlay glow for "lebih mencolok" */
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(245,158,11,0.06), rgba(139,92,246,0.03));
+      mix-blend-mode: overlay;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* glass card on hero must be on top */
+    .hero-content { position: relative; z-index: 2; }
+
+    /* small control button style */
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: .45rem .6rem;
+      border-radius: .5rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* responsive tweak for tall screens */
+    @media (min-aspect-ratio: 16/9) {
+      .hero-video { transform: scale(1.08); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN (Sederhana) -->
+ <div id="loginScreen" class="relative min-h-screen flex items-center justify-center px-4 bg-black overflow-hidden">
+  <!-- 🎞️ Background Video -->
+  <video autoplay muted loop playsinline preload="metadata" 
+         class="absolute inset-0 w-full h-full object-cover z-0 brightness-50"
+         poster="poster-login.jpg">
+    <source src="https://www.pexels.com/download/video/4686755/" type="video/mp4">
+    Browser kamu tidak mendukung video background.
+  </video>
+
+  <!-- Overlay gradasi biar teks tetap jelas -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-0"></div>
+
+  <!-- 💡 Form Login -->
+  <div class="relative z-10 max-w-md w-full p-8 glass rounded-2xl shadow-2xl">
+    <h2 class="text-2xl font-bold text-[color:var(--accent)] text-center mb-4">Login Admin</h2>
+
+    <form id="loginForm" class="space-y-4">
+      <input id="user" type="text" placeholder="Username"
+             class="w-full px-3 py-2 bg-neutral-900/70 border border-neutral-700 rounded-lg focus:ring-2 focus:ring-amber-500">
+
+      <div class="relative">
+        <input id="pass" type="password" placeholder="Password"
+               class="w-full px-3 py-2 bg-neutral-900/70 border border-neutral-700 rounded-lg focus:ring-2 focus:ring-amber-500">
+        <button id="togglePass" type="button"
+                class="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-neutral-400 hover:text-amber-400 transition">
+          Tampil
+        </button>
+      </div>
+
+      <button id="loginBtn"
+              class="w-full bg-[color:var(--accent)] hover:bg-amber-500 text-neutral-900 font-semibold py-2 rounded-lg transition">
+        Masuk
+      </button>
+    </form>
+  </div>
+</div>
+
+
+  <!-- MAIN SITE (tersembunyi awalnya) -->
+  <main id="mainSite" class="hidden">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl glass border border-neutral-800 z-50 rounded-2xl">
+      <div class="flex items-center justify-between px-6 py-3">
+        <h1 class="text-lg font-semibold text-[color:var(--accent)]">PT. Ajun Arfianto</h1>
+        <div class="flex items-center gap-3">
+          <label class="cursor-pointer text-sm text-neutral-300 hover:text-white">
+            <input type="file" id="photoUpload" accept="image/*" class="hidden"> Upload Foto
+          </label>
+          <img id="profilePhoto" src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+               class="w-10 h-10 rounded-full border-2 border-[color:var(--accent)] object-cover">
+          <button id="logoutBtn" class="text-sm text-neutral-300 hover:text-[color:var(--accent)]">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO: Video Background + Konten mencolok -->
+    <section class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+      <!-- VIDEO: ganti 'video.mp4' dengan path/file yang kamu punya -->
+      <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="metadata" poster="poster.jpg">
+        <source src="https://www.pexels.com/download/video/3063467/" type="video/mp4">
+        <!-- fallback image -->
+      </video>
+
+      <!-- efek glow & gelap -->
+      <div class="absolute inset-0 bg-black/50 z-0"></div>
+      <div class="hero-glow"></div>
+
+      <!-- Konten -->
+      <div class="hero-content relative z-10 px-6 text-center max-w-4xl">
+        <div class="glass inline-block p-6 rounded-3xl shadow-xl fade-in">
+          <h2 class="text-5xl md:text-6xl font-extrabold text-[color:var(--accent)] mb-2">Selamat Datang <br> Admin Ajun</h2>
+          <p class="text-neutral-200 max-w-3xl mx-auto text-lg mb-6">
+            Kelola kegiatan pabrik dengan efisien — produksi, kontrol kualitas, hingga distribusi dalam satu platform.
+          </p>
+
+          <div class="flex gap-3 justify-center items-center">
+            <a href="#about" class="btn-ghost text-sm font-semibold text-neutral-100 hover:text-white px-4 py-2">Pelajari Lebih Lanjut</a>
+
+            <!-- video control -->
+            <button id="toggleVideo" class="btn-ghost text-sm font-semibold text-neutral-100 flex items-center gap-2">
+              <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3v18l15-9z"/></svg>
+              <span id="toggleText">Pause</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <!-- ABOUT -->
+<section id="about" class="py-20 max-w-6xl mx-auto px-6 text-center">
+  <h3 class="text-4xl font-bold text-[color:var(--accent)] mb-6">Tentang Kami</h3>
+
+  <p class="text-neutral-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+    <span class="font-semibold text-amber-400">PT. Ajun Arfianto</span> adalah perusahaan manufaktur modern yang berdedikasi 
+    dalam menciptakan solusi industri berbasis teknologi. Sejak berdiri pada tahun <span class="font-medium text-amber-400">2010</span>, 
+    kami terus berkomitmen untuk menghadirkan inovasi, efisiensi, dan kualitas terbaik dalam setiap proses produksi.
+  </p>
+
+  <div class="grid md:grid-cols-3 gap-6 mb-12">
+    <div class="glass p-6 rounded-2xl hover:scale-[1.03] transition">
+      <h4 class="font-semibold text-[color:var(--accent)] mb-2">Visi</h4>
+      <p class="text-sm text-neutral-300 leading-relaxed">
+        Menjadi perusahaan manufaktur terdepan di Asia yang mengutamakan efisiensi, inovasi, dan keberlanjutan lingkungan,
+        serta menjadi mitra strategis bagi berbagai industri global.
+      </p>
+    </div>
+
+    <div class="glass p-6 rounded-2xl hover:scale-[1.03] transition">
+      <h4 class="font-semibold text-[color:var(--accent)] mb-2">Misi</h4>
+      <ul class="text-sm text-neutral-300 list-disc list-inside text-left leading-relaxed">
+        <li>Menyediakan solusi produksi dengan teknologi terkini dan sistem otomatisasi cerdas.</li>
+        <li>Meningkatkan efisiensi kerja dengan pengelolaan sumber daya manusia dan energi yang optimal.</li>
+        <li>Menjalin kolaborasi jangka panjang dengan mitra bisnis lokal dan internasional.</li>
+      </ul>
+    </div>
+
+    <div class="glass p-6 rounded-2xl hover:scale-[1.03] transition">
+      <h4 class="font-semibold text-[color:var(--accent)] mb-2">Nilai</h4>
+      <ul class="text-sm text-neutral-300 list-disc list-inside text-left leading-relaxed">
+        <li><span class="font-medium text-amber-400">Integritas</span> — Menjaga kejujuran dan kepercayaan dalam setiap tindakan.</li>
+        <li><span class="font-medium text-amber-400">Kolaborasi</span> — Bekerja sama dalam semangat saling mendukung untuk mencapai tujuan bersama.</li>
+        <li><span class="font-medium text-amber-400">Inovasi</span> — Terus beradaptasi dan menciptakan ide baru demi kemajuan berkelanjutan.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bagian tambahan: sejarah + keunggulan -->
+  <div class="grid md:grid-cols-2 gap-10 items-center text-left">
+    <div>
+      <h4 class="text-2xl font-semibold text-[color:var(--accent)] mb-3">Sejarah Perusahaan</h4>
+      <p class="text-neutral-300 text-sm leading-relaxed">
+        Didirikan oleh <span class="font-medium text-amber-400">Ajun Arfianto</span> pada tahun 2010, perusahaan ini berawal dari 
+        industri kecil menengah yang bergerak di bidang perakitan mesin produksi. Berkat dedikasi dan inovasi tanpa henti, 
+        PT. Ajun Arfianto berkembang menjadi salah satu produsen terpercaya dengan klien dari berbagai sektor industri.
+      </p>
+      <p class="text-neutral-300 text-sm leading-relaxed mt-3">
+        Kini, kami memiliki lebih dari <span class="text-amber-400 font-medium">500 tenaga profesional</span> yang berpengalaman 
+        di bidang teknik, desain, dan logistik, yang memastikan setiap produk memenuhi standar kualitas internasional.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-2xl font-semibold text-[color:var(--accent)] mb-3">Keunggulan Kami</h4>
+      <ul class="text-neutral-300 text-sm leading-relaxed list-disc list-inside">
+        <li>Proses produksi yang efisien dengan sistem digital terintegrasi.</li>
+        <li>Kontrol kualitas berstandar ISO 9001 dan ISO 14001.</li>
+        <li>Tim R&D yang aktif mengembangkan produk dan teknologi baru.</li>
+        <li>Layanan pelanggan cepat tanggap dan transparan.</li>
+        <li>Kepedulian terhadap lingkungan melalui konsep <i>Green Manufacturing</i>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tambahan: kutipan inspiratif -->
+  <div class="mt-16 max-w-3xl mx-auto">
+    <blockquote class="italic text-neutral-400 text-lg border-l-4 border-[color:var(--accent)] pl-4">
+      “Kami percaya bahwa masa depan industri ditentukan oleh mereka yang berani berinovasi hari ini.”
+      <br>
+      <span class="text-[color:var(--accent)] font-semibold not-italic">— Ajun Arfianto, CEO & Founder</span>
+    </blockquote>
+  </div>
+</section>
+
+<!-- PROJECTS / PORTOFOLIO -->
+<section id="projects" class="py-20 bg-neutral-950 border-t border-neutral-800">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-4xl font-bold text-[color:var(--accent)] mb-6">Proyek Kami</h3>
+    <p class="text-neutral-400 max-w-3xl mx-auto mb-12">
+      Kami telah menyelesaikan berbagai proyek manufaktur dan otomasi industri untuk klien nasional maupun internasional.
+      Berikut beberapa proyek unggulan kami yang mencerminkan komitmen terhadap kualitas dan inovasi.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Project 1 -->
+      <div class="glass rounded-2xl overflow-hidden hover:scale-[1.03] transition">
+        <img src="https://i.pinimg.com/736x/c4/50/8e/c4508e507c47bceedccea4fa96cc3859.jpg" 
+             alt="Proyek 1" class="w-full h-48 object-cover">
+        <div class="p-6 text-left">
+          <h4 class="text-xl font-semibold text-[color:var(--accent)] mb-2">Sistem Otomasi Produksi</h4>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            Instalasi sistem otomatis berbasis sensor pintar untuk pabrik komponen elektronik di Bekasi.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="glass rounded-2xl overflow-hidden hover:scale-[1.03] transition">
+        <img src="https://i.pinimg.com/736x/6e/da/03/6eda033b51fb317d039d9601a4a1a066.jpg" 
+             alt="Proyek 2" class="w-full h-48 object-cover">
+        <div class="p-6 text-left">
+          <h4 class="text-xl font-semibold text-[color:var(--accent)] mb-2">Pengembangan Mesin CNC</h4>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            Rancang bangun dan pengujian mesin CNC generasi baru untuk sektor otomotif.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="glass rounded-2xl overflow-hidden hover:scale-[1.03] transition">
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=60" 
+             alt="Proyek 3" class="w-full h-48 object-cover">
+        <div class="p-6 text-left">
+          <h4 class="text-xl font-semibold text-[color:var(--accent)] mb-2">Modernisasi Pabrik Tekstil</h4>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            Transformasi digital dengan penerapan sistem IoT untuk pemantauan real-time pada proses produksi tekstil.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layanan Kami (Our Services) -->
+<section id="services" class="py-20 bg-neutral-950 border-t border-neutral-800">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-4xl font-bold text-[color:var(--accent)] mb-6">Layanan Kami</h3>
+    <p class="text-neutral-400 max-w-3xl mx-auto mb-12">
+      Kami menawarkan solusi manufaktur yang terintegrasi — dari desain produk hingga distribusi.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-2xl">
+        <h4 class="text-xl font-semibold text-[color:var(--accent)] mb-2">Desain & R&D</h4>
+        <p class="text-neutral-300 text-sm">Mengembangkan desain produk inovatif dengan dukungan tim riset profesional.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h4 class="text-xl font-semibold text-[color:var(--accent)] mb-2">Produksi Massal</h4>
+        <p class="text-neutral-300 text-sm">Memproduksi dengan standar tinggi menggunakan teknologi otomasi modern.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <h4 class="text-xl font-semibold text-[color:var(--accent)] mb-2">Distribusi & Logistik</h4>
+        <p class="text-neutral-300 text-sm">Menjamin pengiriman tepat waktu ke seluruh Indonesia dengan sistem terpadu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tim Kami (Our Team) -->
+ <section id="team" class="py-20 bg-neutral-900 border-t border-neutral-800">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-4xl font-bold text-[color:var(--accent)] mb-6">Tim Kami</h3>
+    <p class="text-neutral-400 max-w-3xl mx-auto mb-12">
+      Kami terdiri dari profesional muda yang berdedikasi dalam menciptakan solusi manufaktur berkualitas tinggi.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-2xl">
+        <img src="img/ajun.jpg" class="w-24 h-28 rounded-full mx-auto mb-4" alt="Ajun Arfianto">
+        <h4 class="text-lg font-semibold text-[color:var(--accent)]">Ajun Arfianto</h4>
+        <p class="text-neutral-400 text-sm">CEO & Founder</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <img src="https://randomuser.me/api/portraits/men/41.jpg" class="w-24 h-28 rounded-full mx-auto mb-4" alt="Ilham Pratama">
+        <h4 class="text-lg font-semibold text-[color:var(--accent)]">Ilham Pratama</h4>
+        <p class="text-neutral-400 text-sm">Kepala Produksi</p>
+      </div>
+      <div class="glass p-6 rounded-2xl">
+        <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-24 h-28 rounded-full mx-auto mb-4" alt="Dina Kurnia">
+        <h4 class="text-lg font-semibold text-[color:var(--accent)]">Dina Kurnia</h4>
+        <p class="text-neutral-400 text-sm">Manajer Pemasaran</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Klien & Partner Kami -->
+ <section id="clients" class="py-20 bg-neutral-950 border-t border-neutral-800">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h3 class="text-4xl font-bold text-[color:var(--accent)] mb-6">Klien & Partner Kami</h3>
+    <p class="text-neutral-400 max-w-3xl mx-auto mb-12">
+      Kami bangga telah menjadi mitra berbagai perusahaan ternama dari sektor otomotif, elektronik, dan logistik.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+      <img src="https://i.pinimg.com/736x/6b/71/d6/6b71d660b8fd2d0034a7d0d3a22beb67.jpg" class="mx-auto h-12 opacity-80" alt="Honda">
+      <img src="https://i.pinimg.com/1200x/29/ba/77/29ba77827835c08d6d5921402c2bef55.jpg" class="mx-auto h-12 opacity-80" alt="Toyota">
+      <img src="https://i.pinimg.com/1200x/1d/85/14/1d851408f8d9b1f3c2b34dfdd3c50032.jpg  " class="mx-auto h-12 opacity-80" alt="Siemens">
+      <img src="https://i.pinimg.com/1200x/05/0a/c9/050ac92cb432973286bbba0b3637f17c.jpg" class="mx-auto h-12 opacity-80" alt="Samsung">
+    </div>
+  </div>
+</section>
+
+    <!-- Tambahan CTA -->
+    <div class="mt-12">
+      <a href="#contact" class="inline-block bg-[color:var(--accent)] hover:bg-amber-500 text-neutral-900 font-semibold py-3 px-8 rounded-full transition">
+        Lihat Lebih Banyak
+      </a>
+    </div>
+  </div>
+</section>
+
+    <!-- footer singkat -->
+    <footer class="text-center text-neutral-500 text-sm py-6 border-t border-neutral-800">
+      © 2025 PT. Ajun Arfianto — All Rights Reserved.
+    </footer>
+  </main>
+
+  <!-- SCRIPT: Interaksi & optimisasi video -->
+  <script>
+    // Elemen
+    const loginScreen = document.getElementById('loginScreen');
+    const mainSite = document.getElementById('mainSite');
+    const loginForm = document.getElementById('loginForm');
+    const userInput = document.getElementById('user');
+    const passInput = document.getElementById('pass');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const photoUpload = document.getElementById('photoUpload');
+    const profilePhoto = document.getElementById('profilePhoto');
+    const togglePass = document.getElementById('togglePass');
+    const heroVideo = document.getElementById('heroVideo');
+    const toggleVideo = document.getElementById('toggleVideo');
+    const toggleText = document.getElementById('toggleText');
+    const playIcon = document.getElementById('playIcon');
+
+    // Helper: show/hide main
+    function showMain() {
+      loginScreen.classList.add('hidden');
+      mainSite.classList.remove('hidden');
+      window.scrollTo({top:0, behavior:'instant'});
+      // add small fade-in to main content
+      document.querySelector('main').classList.add('fade-in');
+    }
+    function showLogin() {
+      mainSite.classList.add('hidden');
+      loginScreen.classList.remove('hidden');
+      window.scrollTo(0,0);
+    }
+
+    // Restore login state
+    if (localStorage.getItem('loggedIn') === 'true') {
+      showMain();
+      if (localStorage.getItem('profilePhoto')) {
+        profilePhoto.src = localStorage.getItem('profilePhoto');
+      }
+    }
+
+    // login handling (demo)
+    loginForm?.addEventListener('submit', e => {
+      e.preventDefault();
+      const user = userInput.value.trim();
+      const pass = passInput.value.trim();
+
+      if (!user || !pass) {
+        loginBtn.classList.add('animate-shake');
+        setTimeout(()=> loginBtn.classList.remove('animate-shake'), 600);
+        return alert('Isi username & password terlebih dahulu!');
+      }
+
+      if (user === 'ajun' && pass === '12345') {
+        loginBtn.textContent = 'Memeriksa...';
+        loginBtn.disabled = true;
+        setTimeout(() => {
+          localStorage.setItem('loggedIn','true');
+          showMain();
+          loginBtn.textContent = 'Masuk';
+          loginBtn.disabled = false;
+        }, 700);
+      } else {
+        loginBtn.classList.add('animate-shake');
+        loginBtn.textContent = 'Gagal!';
+        setTimeout(() => {
+          loginBtn.textContent = 'Masuk';
+          loginBtn.classList.remove('animate-shake');
+        }, 900);
+        alert('Login gagal — username atau password salah!');
+      }
+    });
+
+    // logout
+    logoutBtn?.addEventListener('click', () => {
+      localStorage.removeItem('loggedIn');
+      showLogin();
+    });
+
+    // profile photo upload
+    photoUpload?.addEventListener('change', e => {
+      const f = e.target.files[0];
+      if (!f) return;
+      if (!f.type.startsWith('image/')) return alert('Pilih file gambar!');
+      const r = new FileReader();
+      r.onload = ev => {
+        profilePhoto.src = ev.target.result;
+        localStorage.setItem('profilePhoto', ev.target.result);
+      };
+      r.readAsDataURL(f);
+    });
+
+    // toggle password visibility
+    togglePass?.addEventListener('click', () => {
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+        togglePass.textContent = 'Sembunyikan';
+      } else {
+        passInput.type = 'password';
+        togglePass.textContent = 'Tampil';
+      }
+    });
+
+    // video controls: pause/play
+    let playing = true;
+    toggleVideo?.addEventListener('click', () => {
+      if (!heroVideo) return;
+      if (heroVideo.paused) {
+        heroVideo.play();
+        playing = true;
+        toggleText.textContent = 'Pause';
+        playIcon.innerHTML = '<path d="M5 3v18l15-9z"/>'; // play icon
+      } else {
+        heroVideo.pause();
+        playing = false;
+        toggleText.textContent = 'Play';
+        playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'; // pause icon
+      }
+    });
+
+    // lazy-play: only play when visible (save CPU)
+    if ('IntersectionObserver' in window && heroVideo) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(ent => {
+          if (ent.isIntersecting) {
+            if (!playing) return; // user paused intentionally
+            heroVideo.play().catch(()=>{ /* autoplay blocked */});
+          } else {
+            heroVideo.pause();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(heroVideo);
+    }
+
+    // accessibility: keyboard toggle video with 'v'
+    document.addEventListener('keydown', e => {
+      if (e.key.toLowerCase() === 'v' && mainSite.classList.contains('hidden') === false) {
+        toggleVideo.click();
+      }
+    });
+
+    // contact form demo (if ada)
+    document.getElementById('contactForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Pesan terkirim (demo).');
+      e.target.reset();
+    });
+
+    // Small usability: if video source missing, hide control
+    heroVideo?.addEventListener('error', () => {
+      document.getElementById('toggleVideo')?.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>

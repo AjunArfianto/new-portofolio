@@ -1,209 +1,346 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./dist/output.css" rel="stylesheet" />
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Portofolio Ajun Arfianto — Web Developer yang berfokus pada Tailwind CSS, HTML, dan UI/UX Design." />
+  <meta name="keywords" content="Ajun Arfianto, Portfolio, Web Developer, Tailwind CSS, Frontend" />
+  <meta name="author" content="Ajun Arfianto" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="src/img/ajun.jpg" type="image/png" />
+
+  <title>Ajun Arfianto | Web Developer Portfolio</title>
+  
+
+  <!-- Font dan CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="./src/output.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+
+      <!-- intro -->`
     <style>
-      html {
-        scroll-behavior: smooth;
+      /* Animasi intro */
+      @keyframes fadeZoom {
+        0% { opacity: 0; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .animate-fadeZoom {
+        animation: fadeZoom 0.8s ease-out forwards;
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+      .delay-\[300ms\] { animation-delay: 0.3s; }
+      .delay-\[600ms\] { animation-delay: 0.6s; }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
     </style>
-  </head>
-  <body class="bg-neutral-900 min-h-screen">
-    <nav class="bg-neutral-900 text-white fixed w-full top-0 left-0 z-50 shadow-lg">
-      <section class="max-w-7xl mx-auto py-4 px-6 md:px-32 flex justify-between items-center pt-10">
-        <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-500  to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400 ">Portofolio</h1>
+</head>
+<body class="bg-neutral-900 min-h-screen flex flex-col text-white font-[Poppins] overflow-x-hidden">
 
-        <ul class="hidden md:flex gap-6">
-          <li><a href="#beranda" class="cursor-pointer font-bold text-stone-400 hover:text-amber-400 transition">Beranda</a></li>
-          <li><a href="#tentang" class="cursor-pointer font-bold text-stone-400 hover:text-amber-400 transition">Tentang</a></li>
-          <li><a href="#proyek" class="cursor-pointer font-bold text-stone-400 hover:text-amber-400 transition">Proyek</a></li>
-          <li><a href="#contact" class="cursor-pointer font-bold text-stone-400 hover:text-amber-400 transition">Kontak</a></li>
-        </ul>
-      </section>
-    </nav>
-
-    <!--Beranda -->
-    
-    <section id="beranda" class="bg-neutral-900 flex flex-col md:flex-row items-center justify-between px-6 md:px-32 pt-40">
-      <div>
-        <h1 class="text-5xl font-bold  pt-20 pb-5 text-blue-1000">Hi, Saya Ajhun Arfianto</h1>
-        <p class="text-zinc-400 pt-10">I'm Ajun Arfianto, an aspiring developer who’s passionate about learning <br />to create meaningful digital experiences through clean code and creative design.</p>
-        <div class="pt-10">
-          <button class="bg-amber-400 rounded-2xl hover:bg-amber-600 px-5 py-3 cursor-pointer text-white transition">
-            Lihat Proyek
-          </button>
-        </div>
+        <!-- INTRO -->
+    <div id="intro" class="fixed inset-0 flex flex-col items-center justify-center bg-neutral-900 text-white z-[9999] transition-opacity duration-700 overflow-visible">
+      <div class="flex flex-col items-center text-center animate-fadeZoom">
+        <img src="src/img/ajun.jpg" alt="Ajun Arfianto" class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg object-cover mb-6 opacity-0 animate-fadeIn" />
+        <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent mb-2 opacity-0 animate-fadeIn delay-[300ms] leading-normal">
+          Ajun Arfianto
+        </h1>
+        <p class="text-zinc-400 text-lg md:text-xl tracking-widest opacity-0 animate-fadeIn delay-[600ms]">
+          I'm Full Stack Devoloper
+        </p>
       </div>
-      <img src="src/img/ajun.jpg" alt="" class="w-[250px] rounded-3xl mt-20" />
+    </div>
+
+      <!-- Navbar -->
+      <nav class="bg-neutral-900 fixed w-full top-0 left-0 z-50 shadow-lg" id="navbar">
+        <section class="max-w-7xl mx-auto py-4 px-6 md:px-32 flex justify-between items-center md:pt-10">
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400">Portofolio</h1>
+          <ul class="hidden md:flex gap-6">
+            <li><a href="#beranda" class="cursor-pointer font-medium text-stone-400 hover:text-amber-400 transition">Beranda</a></li>
+            <li><a href="#tentang" class="cursor-pointer font-medium text-stone-400 hover:text-amber-400 transition">Tentang</a></li>
+            <li><a href="#pengalaman" class="cursor-pointer font-medium text-stone-400 hover:text-amber-400 transition">Pengalaman</a></li>
+            <li><a href="#skills" class="cursor-pointer font-medium text-stone-400 hover:text-amber-400 transition">Skills</a></li>
+            <li><a href="#proyek" class="cursor-pointer font-medium text-stone-400 hover:text-amber-400 transition">Proyek</a></li>
+            <li><a href="#contact" class="cursor-pointer font-medium text-stone-400 hover:text-amber-400 transition">Kontak</a></li>
+          </ul>
+        </section>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="flex-grow mt-24">
+
+        <!-- Beranda / Hero -->
+        <section id="beranda" class="max-w-7xl mx-auto px-6 md:px-32 py-12 grid md:grid-cols-2 gap-8 items-center">
+          <div data-aos="fade-right" data-aos-duration="900">
+            <h2 class="text-4xl md:text-5xl font-bold leading-tight">Hi, Saya <span class="text-amber-400">Ajun</span></h2>
+            <p class="text-zinc-400 mt-4 max-w-xl">Saya seorang Web Developer yang fokus pada pembuatan antarmuka bersih dan pengalaman pengguna yang bermakna. Saya bekerja menggunakan Tailwind CSS, HTML, dan praktik pengembangan modern.</p>
+
+            <div class="mt-6 flex gap-3">
+              <a href="#proyek" class="inline-block bg-amber-400 hover:bg-amber-600 text-black px-5 py-3 rounded-full font-semibold transition">Lihat Proyek</a>
+              <a href="src/my-cv/cv_ajun.pdf" download class="inline-block border border-zinc-700 px-5 py-3 rounded-full font-medium hover:bg-zinc-800 transition">Download CV</a>
+            </div>
+
+            <div class="mt-6 flex items-center gap-4 ml-5">
+              <a href="https://github.com/ajunarfianto" target="_blank" class="text-zinc-400 hover:text-amber-400 transition"><i data-lucide="github" class="w-6 h-6"></i></a>
+              <a href="https://linkedin.com/in/ajunarfianto" target="_blank" class="text-zinc-400 hover:text-amber-400 transition"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+              <a href="https://instagram.com/ajunarfianto" target="_blank" class="text-zinc-400 hover:text-amber-400 transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+            </div>
+          </div>
+          <div data-aos="fade-left" data-aos-duration="900" class="flex justify-center">
+            <img src="src/img/ajun.jpg" alt="Ajun Arfianto" class="w-80 md:w-[250px] rounded-2xl shadow-lg object-cover" />
+          </div>
+        </section>
+
+        <!-- Tentang -->
+        <section id="tentang" class="max-w-5xl mx-auto px-6 md:px-32 py-12">
+          <div class="text-center mt-5 py-16 px-6" data-aos="zoom-in" data-aos-duration="1000">
+            <h3 class="font-bold text-5xl mb-16 bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400 leading-normal">Tentang Saya</h3>
+          </div>
+
+          <!-- Card 1 -->
+          <div class="bg-neutral-800/50 rounded-2xl p-6 grid md:grid-cols-2 gap-6 items-center" data-aos="fade-up" data-aos-duration="1000">
+            <div>
+              <p class="text-zinc-200 leading-relaxed">Saya mahasiswa S1 Teknik Informatika di <span class="text-amber-300 font-bold">STTIKOM Insan Unggul</span>. Saya menyukai pembuatan website yang sederhana namun fungsional, serta terus belajar untuk meningkatkan kemampuan Full Stack.</p>
+              <ul class="mt-4 text-stone-300 list-disc list-inside">
+                <li>Front-end: HTML, CSS, Tailwind</li>
+                <li>Tools: Git, VSCode, Canva</li>
+              </ul>
+            </div>
+            <div class="flex justify-center overflow-hidden rounded-2xl">
+              <img src="src/img/img-3.jpg" alt="Foto Ajun" class="rounded-2xl w-full md:w-72 shadow-md transform transition-transform duration-500 hover:scale-110 cursor-pointer" loading="lazy"/>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-neutral-800/50 rounded-2xl p-6 grid md:grid-cols-2 gap-6 items-center mt-10" data-aos="fade-up" data-aos-duration="1000">
+            <div>
+              <p class="text-zinc-200 leading-relaxed">Selain fokus belajar di bidang teknologi, saya juga aktif dalam kegiatan organisasi kampus. Saya bergabung di <span class="text-amber-400 font-semibold">Himpunan Mahasiswa</span> dan pernah berperan dalam berbagai kegiatan kampus, mulai dari seminar, bakti sosial, hingga acara keakraban mahasiswa.</p>
+              <ul class="mt-4 text-stone-300 list-disc list-inside">
+                <li>Belajar manajemen waktu dan kepemimpinan</li>
+                <li>Berkoordinasi dengan tim dalam penyelenggaraan acara</li>
+                <li>Meningkatkan kemampuan komunikasi dan tanggung jawab</li>
+              </ul>
+            </div>
+            <div class="flex justify-center overflow-hidden rounded-2xl">
+              <img src="src/img/organisasi-1.jpg" alt="Kegiatan organisasi Ajun" class="rounded-2xl w-full md:w-72 shadow-md transform transition-transform duration-500 hover:scale-110 cursor-pointer" loading="lazy"/>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pengalaman & Pendidikan -->
+        <section id="pengalaman" class="text-center mt-20 py-16">
+          <h1 data-aos="zoom-in" data-aos-duration="1000" class="font-bold text-5xl mb-16 bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400 leading-normal">Pengalaman & Pendidikan</h1>
+          <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 text-left">
+            <div data-aos="fade-up" data-aos-duration="1000" class="bg-neutral-800/50 p-6 rounded-2xl shadow-lg">
+              <h2 class="text-2xl font-semibold mb-3 text-amber-400">Pendidikan</h2>
+              <p class="text-white font-medium">STTIKOM Insan Unggul</p>
+              <p class="text-zinc-400 mb-3">S1 Teknik Informatika (2024 – Sekarang)</p>
+              <p class="text-zinc-400">Fokus mempelajari pemrograman web, desain UI/UX, dan pengembangan aplikasi berbasis web.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="bg-neutral-800/50 p-6 rounded-2xl shadow-lg">
+              <h2 class="text-2xl font-semibold mb-3 text-amber-400">Pengalaman</h2>
+              <p class="text-white font-medium">Organisasi Kampus (HAMKA)</p>
+              <p class="text-zinc-400 mb-3">Ketua Divisi External (2024 – Sekarang)</p>
+              <p class="text-zinc-400">Bertanggung jawab dalam perencanaan dan pelaksanaan kegiatan kampus serta berkolaborasi dengan tim untuk membuat acara sukses.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+    <section id="skills" class="text-center mt-20 py-16 px-6">
+      <h1 data-aos="zoom-in" data-aos-duration="1000" class="font-bold text-5xl mb-16 bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400">Skills</h1>
+      <p data-aos="fade-up" data-aos-duration="1000" class="text-stone-400 text-lg mt-6 mb-12 max-w-2xl mx-auto">Berikut beberapa kemampuan utama yang saya kuasai dalam pengembangan web dan desain antarmuka.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Frontend -->
+        <div class="bg-neutral-800 text-card-foreground flex flex-col gap-7 rounded-xl border shadow-sm p-5 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 glass-effect border-blue-500/10 max-w-xs w-full mx-auto items-center text-center">
+          <div class="flex items-center mb-2">
+            <div class="p-3 rounded-lg bg-card mr-4 text-blue-500">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div><h3 class="text-xl font-semibold mb-4 mt-2" data-aos="flip-left" data-aos-duration="1000">Frontend Development</h3></div>
+          </div>
+          <div class="flex flex-wrap gap-2" data-aos="flip-left" data-aos-duration="1000">
+            <span class="tech-badge cursor-pointer">Tailwind CSS</span>
+            <span class="tech-badge cursor-pointer">PHP</span>
+            <span class="tech-badge cursor-pointer">Javascript</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="bg-neutral-800 text-card-foreground flex flex-col gap-6 rounded-xl border shadow-sm p-5 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 glass-effect border-green-500/10 max-w-xs w-full mx-auto items-center text-center">
+          <div class="flex items-center mb-4">
+            <div class="p-3 rounded-lg bg-card mr-4 text-green-500">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+            </div>
+            <div><h3 class="text-xl font-semibold mb-4 mt-2" data-aos="flip-left" data-aos-duration="1000">Backend Development</h3></div>
+          </div>
+          <div class="flex flex-wrap gap-2" data-aos="flip-left" data-aos-duration="1000">
+            <span class="badge cursor-pointer">My SQL</span>
+            <span class="badge cursor-pointer">Python</span>
+            <span class="badge cursor-pointer">Node.js</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="bg-neutral-800 text-card-foreground flex flex-col gap-12 rounded-xl border shadow-sm p-5 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 glass-effect border-purple-500/10 max-w-xs w-full mx-auto items-center text-center">
+          <div class="flex items-center mb-4">
+            <div class="p-3 rounded-lg bg-card mr-4 text-purple-500">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.1c1.512-.87 3.287.826 2.416 2.338a1.724 1.724 0 001.1 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.1 2.573c.87 1.512-.826 3.287-2.338 2.416a1.724 1.724 0 00-2.573 1.1c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.1c-1.512.87-3.287-.826-2.416-2.338a1.724 1.724 0 00-1.1-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.1-2.573c-.87-1.512.826-3.287 2.338-2.416.996.574 2.296.16 2.573-1.1z"/></svg>
+            </div>
+            <div><h3 class="text-xl font-semibold mb-4 mt-2" data-aos="flip-left" data-aos-duration="1000">Tools</h3></div>
+          </div>
+          <div class="flex flex-wrap gap-2" data-aos="flip-left" data-aos-duration="1000">
+            <span class="badge cursor-pointer">VSCode</span>
+            <span class="badge cursor-pointer">Figma</span>
+            <span class="badge cursor-pointer">Canva</span>
+          </div>
+        </div>
+
+      </div>
     </section>
 
-
-    <!-- Tentang -->
-
-      <section id="tentang" class="flex flex-col items-center px-6 md:px-32 mt-20 pt-30">
-        <h1 class="font-bold text-5xl mb-20 bg-gradient-to-r from-blue-500  to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400">ABOUT</h1>
-
-        <!-- CARD 1 -->
-        <div class="flex flex-col md:flex-row justify-between items-center w-full gap-10 
-                    bg-neutral-800/50 rounded-3xl p-6">
-          <p class="text-white">
-            Saya adalah mahasiswa S1 STTIKOM Insan Unggul yang memiliki minat besar
-            <br />di bidang Programming dan Web Development. Saat ini saya terus belajar
-            dan <br />mengembangkan kemampuan di Frontend Development dengan semangat dan
-            <br />rasa ingin tahu yang tinggi.
-          </p>
-
-          <!-- Efek gambar -->
-          <div class="relative group cursor-pointer">
-            <!-- Latar biru menyala -->
-            <div class="absolute inset-0 rounded-3xl bg-blue-500/50 blur-lg opacity-0 
-                        group-active:opacity-100 group-hover:opacity-70 
-                        transition duration-300 z-0"></div>
-
-            <!-- Gambar -->
-            <img src="https://i.pinimg.com/1200x/e8/b5/55/e8b555fe881fb560c8d966f62e1d5c98.jpg" 
-                alt="foto saya"
-                class="w-[300px] rounded-3xl transform transition duration-300 
-                        group-hover:scale-105 group-active:scale-110 relative z-10" />
-          </div>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="flex flex-col md:flex-row justify-between items-center w-full gap-10 
-                    bg-neutral-800/50 rounded-3xl p-6 mt-16">
-          <p class="text-white">
-            Saya aktif berorganisasi di lingkungan kampus, di mana saya berperan dalam 
-            <br> kegiatan perencanaan dan pelaksanaan acara. Melalui pengalaman ini, saya 
-            <br>belajar bekerja dalam tim, berpikir kreatif, serta mengelola proyek dengan  
-            <br>lebih terstruktur — kemampuan yang sangat membantu dalam mengembangkan 
-            <br> karier saya sebagai calon Frontend Developer.
-          </p>
-
-          <!-- Efek gambar -->
-          <div class="relative group cursor-pointer">
-            <div class="absolute inset-0 rounded-3xl bg-blue-500/50 blur-lg opacity-0 
-                        group-active:opacity-100 group-hover:opacity-70 
-                        transition duration-300 z-0"></div>
-
-            <img src="src/img/organisasi-1.jpg" 
-                alt="foto organisasi"
-                class="w-[300px] rounded-3xl transform transition duration-300 
-                        group-hover:scale-105 group-active:scale-110 relative z-10" />
-          </div>
-        </div>
-      </section>
-
-          <!-- Proyek -->
-
-        <section id="proyek" class="bg-neutral-900 py-30 items-center justify-between">
-        <h1 class="font-bold text-5xl text-center mb-30 bg-gradient-to-r from-blue-500  to-teal-500 bg-clip-text text-transparent via-cyan-400">PROJECT</h1>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
-          
-          <!-- CARD 1 -->
-
-          <div class="bg-neutral-800 rounded-2xl shadow-lg w-[300px] overflow-hidden text-white 
-                  transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 
-                  active:bg-blue-500/30 cursor-pointer">
-
-            <img src="src/img/Cuplikan layar 2025-10-08 192608.png" alt="" class="w-full h-48 object-cover">
-            <div class="p-5 text-center">
-              <h2 class="text-2xl font-bold mb-2">Website Pabrik</h2>
-              <p class="text-zinc-400 mb-4">Website pribadi yang saya buat dengan Tailwind CSS.</p>
-              <button class="bg-amber-400 hover:bg-amber-600 text-white px-4 py-2 rounded-xl transition">
-                Lihat Detail
-              </button>
-            </div>
-          </div>
-
-          <!-- CARD 2 -->
-
-          <div class="bg-neutral-800 rounded-2xl shadow-lg w-[300px] overflow-hidden text-white 
-                  transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 
-                  active:bg-blue-500/30 cursor-pointer">
-
-            <img src="src/img/screnshoot-2.png" alt="" class="w-full h-48 object-cover">
-            <div class="p-5 text-center">
-              <h2 class="text-2xl font-bold mb-2">Website Portfolio</h2>
-              <p class="text-zinc-400 mb-4">Proyek portfolio menggunakan Tailwind CSS dan HTML.</p>
-              <button class="bg-amber-400 hover:bg-amber-600 text-white px-4 py-2 rounded-xl transition">
-                Lihat Detail
-              </button>
-            </div>
-          </div>
-
-          <!-- CARD 3 -->
-
-          <div class="bg-neutral-800 rounded-2xl shadow-lg w-[300px] overflow-hidden text-white 
-                  transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 
-                  active:bg-blue-500/30 cursor-pointer">
-
-            <img src="src/img/screnshoot-3.png" alt="" class="w-full h-48 object-cover">
-            <div class="p-5 text-center">
-              <h2 class="text-2xl font-bold mb-2">Website Toko Roti</h2>
-              <p class="text-zinc-400 mb-4">Website latihan dengan layout responsif.</p>
-              <button class="bg-amber-400 hover:bg-amber-600 text-white px-4 py-2 rounded-xl transition">
-                Lihat Detail
-              </button>
+    <!-- Project -->
+    <section id="proyek" class="max-w-5xl mx-auto px-6 md:px-20 scroll-mt-24 text-center">
+      <h2 data-aos="zoom-in" data-aos-duration="1000" class="font-bold text-5xl leading-normal mb-24 bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400"> Project </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+        <!-- Card Project 1 -->
+        <div class="group" data-aos="fade-up" data-aos-duration="1000">
+          <div class="bg-neutral-800 rounded-2xl shadow-lg text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-blue-500/40 overflow-hidden cursor-pointer flex flex-col h-[400px]">
+            <img src="src/proyek/project-2/img/Cuplikan layar 2025-11-07 222931.png" alt="Website Pabrik" class="w-full h-48 object-cover"/>
+            <div class="p-5 text-center flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">Website Pabrik</h3>
+                <p class="text-zinc-400 mb-4">Website pribadi yang saya buat dengan Tailwind CSS.</p>
+              </div>
+              <a href="src/proyek/project-2/index.html" class="bg-amber-400 hover:bg-amber-600 text-white px-4 py-2 rounded-xl transition duration-300 inline-block"> Lihat Detail </a>
             </div>
           </div>
         </div>
-      </section>
 
-            <!-- Contact -->
-
-            <section id="contact" class="bg-neutral-900 text-white py-16 px-6">
-        <h2 class="text-4xl font-bold text-center text-purple-500 mb-4">Get In Touch</h2>
-        <p class="text-center text-zinc-300 mb-10">
-          Feel free to reach out for collaborations or just to say hello 👋
-        </p>
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-
-          <div class="space-y-5">
-            <div class="bg-neutral-800 p-5 rounded-lg text-center">
-              <h3 class="font-semibold text-lg mb-1">Email</h3>
-              <p class="text-zinc-300">ajhunarfianto@gmail.com</p>
-            </div>
-            <div class="bg-neutral-800 p-5 rounded-lg text-center">
-              <h3 class="font-semibold text-lg mb-1">Phone</h3>
-              <p class="text-zinc-300">+62 81293417366</p>
-            </div>
-            <div class="bg-neutral-800 p-5 rounded-lg text-center">
-              <h3 class="font-semibold text-lg mb-1">Location</h3>
-              <p class="text-zinc-300">Cilegon, Indonesia</p>
+        <!-- Card Project 2 -->
+        <div class="group" data-aos="fade-up" data-aos-duration="1000">
+          <div class="bg-neutral-800 rounded-2xl shadow-lg text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-cyan-500/40 overflow-hidden cursor-pointer flex flex-col h-[400px]">
+            <img src="src/proyek/project-3/src/img/Cuplikan layar 2025-11-07 224052.png" alt="Portfolio Website" class="w-full h-48 object-cover"/>
+            <div class="p-5 text-center flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">Portfolio Website</h3>
+                <p class="text-zinc-400 mb-4">Portofolio pribadi dengan Tailwind dan animasi ringan.</p>
+              </div>
+              <a href="src/proyek/project-3/index.html" class="bg-amber-400 hover:bg-amber-600 text-white px-4 py-2 rounded-xl transition duration-300 inline-block"> Lihat Detail </a>
             </div>
           </div>
+        </div>
 
-          <form class="space-y-4" action="https://formsubmit.co/ajhunarfianto@gmail.com" method="POST">
-            <input type="text" placeholder="Your Name" name="name" class="w-full bg-neutral-800 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
-            <input type="email" placeholder="Your Email" name="email" class="w-full bg-neutral-800 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
-            <!-- <textarea placeholder="Your Message" class="w-full bg-neutral-800 p-3 rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea> -->
-            <button class="w-full bg-purple-500 hover:bg-purple-600 transition text-white font-semibold py-3 rounded-md" type="submit">
-              Send Message
-            </button>
+        <!-- Card Project 3 -->
+        <div class="group" data-aos="fade-up" data-aos-duration="1000">
+          <div class="bg-neutral-800 rounded-2xl shadow-lg text-white transition-all duration-300 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-fuchsia-400/50 overflow-hidden cursor-pointer flex flex-col h-[400px]">
+            <img src="src/img/screnshoot-3.png" alt="Landing Page" class="w-full h-48 object-cover"/>
+            <div class="p-5 text-center flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-2xl font-bold mb-2">Toko Roti</h3>
+                <p class="text-zinc-400 mb-4">Toko Roti produk dengan animasi menarik.</p>
+              </div>
+              <a href="src/proyek/project-1/project1.html" class="bg-amber-400 hover:bg-amber-600 text-white px-4 py-2 rounded-xl transition duration-300 inline-block"> Lihat Detail </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- Contact -->
+    <section id="contact" class="max-w-5xl mx-auto px-6 md:px-20 py-12 scroll-mt-24 text-center">
+      <h2 data-aos="zoom-in" data-aos-duration="1000" class="font-bold text-5xl leading-normal mb-24 bg-gradient-to-r from-blue-500 to-teal-500 bg-clip-text text-transparent inline-block via-cyan-400"> Contact </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <!-- Info Cards -->
+        <div class="space-y-6 order-last lg:order-first">
+          <div data-aos="fade-up" data-aos-duration="1000" class="bg-neutral-800/50 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-blue-500/40 transition duration-300 text-left">
+            <h3 class="text-xl font-semibold mb-2 text-white">Email</h3>
+            <p class="text-zinc-300">ajhunarfianto@mail.com</p>
+          </div>
+          <div data-aos="fade-up" data-aos-duration="1000" class="bg-neutral-800/50 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-amber-500/40 transition duration-300 text-left">
+            <h3 class="text-xl font-semibold mb-2 text-white">Phone</h3>
+            <p class="text-zinc-300">+62 812 93417366</p>
+          </div>
+          <div data-aos="fade-up" data-aos-duration="1000" class="bg-neutral-800/50 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:shadow-green-500/40 transition duration-300 text-left">
+            <h3 class="text-xl font-semibold mb-2 text-white">Location</h3>
+            <p class="text-zinc-300">Cilegon, Indonesia</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div data-aos="fade-up" data-aos-duration="1000" class="bg-neutral-800/50 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-blue-500/40 transition duration-300">
+          <form method="POST" class="space-y-4">
+            <input type="text" name="nama" placeholder="Your Name" class="w-full px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400"/>
+            <input type="email" name="email" placeholder="Your Email" class="w-full px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400"/>
+            <textarea name="pesan" rows="4" placeholder="Your Message" class="w-full px-4 py-2 rounded-xl bg-neutral-900 border border-neutral-700 text-white focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+            <button type="submit" class="bg-amber-400 hover:bg-amber-600 text-white px-6 py-2 rounded-xl transition duration-300 w-full"> Kirim Pesan </button>
           </form>
         </div>
-      </section>
+      </div>
+    </section>
 
-            <!-- Footer -->
+      <!-- Footer -->
+      <footer class="bg-neutral-800/50 text-zinc-400 py-8 mt-auto">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <h3 class="text-white font-semibold text-lg">© 2025 Ajun Arfianto</h3>
+          <p class="text-sm text-zinc-500">Designed & built with ❤️ using <span class="text-purple-400 font-medium">Tailwind CSS</span></p>
+        </div>
+      </footer>
 
-        <footer class="bg-neutral-950 text-zinc-400 py-8 mt-20">
-            <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-              <h3 class="text-white font-semibold text-lg">
-                © 2025 Ajun Arfianto
-              </h3>
-              <div class="space-x-4">
-                <a href="#beranda" class="hover:text-purple-400 transition">Beranda</a>
-                <a href="#tentang" class="hover:text-purple-400 transition">Tentang</a>
-                <a href="#proyek" class="hover:text-purple-400 transition">Proyek</a>
-                <a href="#contact" class="hover:text-purple-400 transition">Kontak</a>
-              </div>
-              <p class="text-sm text-zinc-500">
-                Designed & built with ❤️ using <span class="text-purple-400 font-medium">Tailwind CSS</span>
-              </p>
-            </div>
-          </footer>
+      <!-- Script AOS + Lucide -->
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="https://unpkg.com/lucide@latest"></script>
+      <script>
+        // Inisialisasi AOS & Lucide
+        AOS.init({ duration: 1000, once: true });
+        lucide.createIcons();
+
+        // Highlight navbar saat scroll
+        const navLinks = document.querySelectorAll('nav ul li a');
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+          let current = '';
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+              current = section.getAttribute('id');
+            }
+          });
+          navLinks.forEach(link => {
+            link.classList.remove('text-amber-400');
+            link.classList.add('text-stone-400');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.remove('text-stone-400');
+              link.classList.add('text-amber-400');
+            }
+          });
+        });
+   </script>
+
+         <script>
+          // Intro fade-out otomatis
+          window.addEventListener("load", () => {
+            const intro = document.getElementById("intro");
+            setTimeout(() => {
+              intro.classList.add("opacity-0");
+              setTimeout(() => intro.remove(), 700);
+            }, 2300); // tampil 2,3 detik lalu hilang
+          });
+        </script>
+
+
   </body>
 </html>

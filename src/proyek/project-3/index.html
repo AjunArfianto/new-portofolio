@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ajun Arfianto — Portfolio</title>
+    <link href="src/output.css" rel="stylesheet">
+
+    <!-- Google Fonts (sesuaikan dengan setupmu) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Mono:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- AOS for simple animations (optional) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <meta name="description" content="Portfolio Ajun Arfianto — Designer & Frontend Developer" />
+
+    <style>
+      /* small helper to ensure the root font uses Roboto via your variables if output.css didn't include it */
+      :root { font-family: var(--default-font-family, 'Roboto', sans-serif); }
+
+      /* tiny fallback styles in case Tailwind build not loaded during quick preview */
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+      /* smooth background gradient for hero */
+      .bg-hero {
+        background: linear-gradient(180deg, rgba(12,12,15,0.92) 0%, rgba(18,18,23,0.92) 50%, rgba(10,10,12,0.92) 100%);
+      }
+    </style>
+  </head>
+
+  <body class="bg-neutral-900 text-slate-100 antialiased leading-relaxed" style="-webkit-font-smoothing:antialiased;">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 top-0 left-0 backdrop-blur-sm bg-black/30 border-b border-neutral-800">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center text-neutral-900 font-extrabold">AA</div>
+          <div class="hidden md:block">
+            <h1 class="text-lg font-semibold">Ajun Arfianto</h1>
+            <p class="text-xs text-neutral-400 -mt-0.5">Full Stack Devoloper</p>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center gap-6">
+          <a href="#about" class="text-sm hover:text-amber-300 transition">Tentang</a>
+          <a href="#skills" class="text-sm hover:text-amber-300 transition">Keahlian</a>
+          <a href="#projects" class="text-sm hover:text-amber-300 transition">Proyek</a>
+          <a href="#contact" class="text-sm hover:text-amber-300 transition">Kontak</a>
+          <a href="#" class="ml-4 inline-block btn-resume px-4 py-2 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-900 font-medium hover:scale-105 transform transition">Unduh CV</a>
+        </div>
+
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" aria-label="toggle menu" class="p-2 rounded-md border border-neutral-800">
+            <svg id="menu-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <svg id="menu-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden bg-black/60 border-t border-neutral-800">
+        <div class="px-6 py-4 flex flex-col gap-3">
+          <a href="#about" class="py-2 px-3 rounded hover:bg-neutral-800">Tentang</a>
+          <a href="#skills" class="py-2 px-3 rounded hover:bg-neutral-800">Keahlian</a>
+          <a href="#projects" class="py-2 px-3 rounded hover:bg-neutral-800">Proyek</a>
+          <a href="#contact" class="py-2 px-3 rounded hover:bg-neutral-800">Kontak</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="pt-28 pb-16 bg-hero">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7" data-aos="fade-right">
+          <p class="text-amber-300 font-medium tracking-wide">Halo, saya</p>
+          <h2 class="mt-2 text-4xl md:text-6xl font-extrabold leading-tight">Ajun Arfianto</h2>
+          <p class="mt-4 text-neutral-300 max-w-2xl">Saya adalah Full Stack Devoloper yang fokus pada pengalaman pengguna, antarmuka bersih, dan performa web. Saya suka membangun produk digital yang elegan dan mudah digunakan.</p>
+
+          <div class="mt-6 flex gap-4 items-center">
+            <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 text-neutral-900 font-semibold hover:scale-105 transition">Lihat Proyek</a>
+            <a href="#contact" class="px-4 py-3 rounded-lg border border-neutral-700 text-sm hover:bg-neutral-800 transition">Hubungi Saya</a>
+          </div>
+
+          <div class="mt-8">
+            <div class="text-xs text-neutral-400">Skill highlights</div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 text-sm hover:bg-blue-500 duration-300 transition cursor-pointer">CSS</span>
+              <span class="px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 text-sm hover:bg-blue-500 duration-300 transition cursor-pointer">Git Bash</span>
+              <span class="px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 text-sm hover:bg-blue-500 duration-300 transition cursor-pointer">Tailwind CSS</span>
+              <span class="px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 text-sm hover:bg-blue-500 duration-300 transition cursor-pointer">PHP</span>
+              <span class="px-3 py-1 rounded-full bg-neutral-800 text-neutral-300 text-sm hover:bg-blue-500 duration-300 transition cursor-pointer">Git Hub</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center" data-aos="fade-left">
+            <div>
+                <img src="src/img/ajun.jpg" alt="my-photo" class="rounded-3xl w-[260px] shadow-2xl hover:scale-105 transition duration-300 hover bg-blue-400">
+            </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+        <div class="md:col-span-2" data-aos="fade-up">
+          <h3 class="text-3xl font-extrabold">Tentang Saya</h3>
+          <p class="mt-4 text-neutral-300 max-w-3xl">Saya adalah seorang yang punya ketertarikan kuat pada detail visual dan pengalaman pengguna. Dalam tiap proyek, saya selalu memprioritaskan aksesibilitas, performa, dan pengalaman pengguna yang konsisten di berbagai perangkat.</p>
+
+          <ul class="mt-6 grid sm:grid-cols-2 gap-3">
+            <li class="bg-neutral-800 p-4 rounded-lg border border-neutral-700">
+              <h4 class="font-medium">Tool favorit</h4>
+              <p class="text-sm text-neutral-400 mt-2">Figma, VSCode, Tailwind CSS, Git.</p>
+            </li>
+            <li class="bg-neutral-800 p-4 rounded-lg border border-neutral-700">
+              <h4 class="font-medium">Bahasa Pemrograman</h4>
+              <p class="text-sm text-neutral-400 mt-2">HTML, CSS, JavaScript, PHP.</p>
+            </li>
+          </ul>
+
+          <div class="mt-6">
+            <a href="#contact" class="inline-block px-5 py-3 rounded-lg bg-amber-400 text-neutral-900 font-medium">Ayo Diskusi</a>
+            <a href="#projects" class="ml-3 inline-block px-5 py-3 rounded-lg border border-neutral-700">Lihat Proyek</a>
+          </div>
+        </div>
+
+        <div class="md:col-span-1" data-aos="zoom-in">
+          <div class="p-6 rounded-2xl bg-gradient-to-b from-neutral-800/60 to-neutral-900/40 border border-neutral-700">
+            <h4 class="font-semibold">Keinginan Karir</h4>
+            <p class="text-sm text-neutral-400 mt-2">Membangun produk yang berdampak dan mudah digunakan, serta berkolaborasi dalam tim yang menghargai desain dan kualitas kode.</p>
+
+            <div class="mt-5">
+              <h5 class="text-xs text-neutral-400">Pendidikan</h5>
+              <p class="mt-1 text-sm">Sarjana Teknik Informatika — Sekolah Tinggi Teknik Informatik Insan Unggul (2025)</p>
+            </div>
+
+            <div class="mt-4">
+              <h5 class="text-xs text-neutral-400">Lokasi</h5>
+              <p class="mt-1 text-sm">Indonesia-Cilegon</p>
+            </div>
+
+            <div class="mt-6 flex gap-3">
+              <a href="#" class="px-3 py-2 rounded-md bg-neutral-800 border border-neutral-700 text-sm">LinkedIn</a>
+              <a href="#" class="px-3 py-2 rounded-md bg-neutral-800 border border-neutral-700 text-sm">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-16 border-t border-neutral-800">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <h3 class="ttext-3xl font-extrabold">Keahlian</h3>
+        <p class="text-neutral-400 mt-2 max-w-2xl">Ringkasan kemampuan teknis dan desain saya, dibagi menjadi kategori praktis agar mudah dibaca.</p>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <div class="bg-neutral-800 p-6 rounded-xl border border-neutral-700" data-aos="fade-up">
+            <h4 class="font-semibold">Frontend</h4>
+            <ul class="mt-3 space-y-2 text-sm text-neutral-400">
+              <li>HTML & semantic markup</li>
+              <li>Tailwind CSS, responsive UI</li>
+            </ul> 
+          </div>
+
+          <div class="bg-neutral-800 p-6 rounded-xl border border-neutral-700" data-aos="fade-up" data-aos-delay="80">
+            <h4 class="font-semibold">Design</h4>
+            <ul class="mt-3 space-y-2 text-sm text-neutral-400">
+              <li>Design systems & tokens</li>
+              <li>Prototyping (Figma)</li>
+            </ul>
+          </div>
+
+          <div class="bg-neutral-800 p-6 rounded-xl border border-neutral-700" data-aos="fade-up" data-aos-delay="160">
+            <h4 class="font-semibold">Tools</h4>
+            <ul class="mt-3 space-y-2 text-sm text-neutral-400">
+              <li>Git & GitHub</li>
+              <li>Figma</li>
+              <li>Vercel / Netlify</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <h4 class="text-lg font-semibold">Skill bar</h4>
+          <div class="mt-4 grid gap-4">
+            <div>
+              <div class="flex justify-between text-sm text-neutral-400"><span>HTML & CSS</span><span>95%</span></div>
+              <div class="w-full bg-neutral-800 rounded h-2 mt-2 overflow-hidden"><div class="h-full w-[95%] bg-amber-400 shadow-sm rounded"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm text-neutral-400"><span>Tailwind CSS</span><span>93%</span></div>
+              <div class="w-full bg-neutral-800 rounded h-2 mt-2 overflow-hidden"><div class="h-full w-[93%] bg-amber-400 shadow-sm rounded"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm text-neutral-400"><span>JavaScript</span><span>5%</span></div>
+              <div class="w-full bg-neutral-800 rounded h-2 mt-2 overflow-hidden"><div class="h-full w-[5%] bg-amber-400 shadow-sm rounded"></div></div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-16">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-3xl font-extrabold">Proyek Terpilih</h3>
+            <p class="text-neutral-400 mt-1">Beberapa proyek yang menampilkan desain dan implementasi saya.</p>
+          </div>
+        </div>
+
+        <div class="mt-8 grid md:grid-cols-2 gap-6">
+
+          <!-- Project 1 -->
+          <article class="bg-neutral-800 rounded-xl border border-neutral-700 overflow-hidden shadow-md" data-aos="fade-up">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="md:col-span-1 p-6">
+                <h4 class="text-lg font-semibold">Website Portofolio Saya</h4>
+                <p class="text-sm text-neutral-400 mt-2">Portofolio pribadi dengan Tailwind dan animasi ringan.</p>
+
+                <div class="mt-4 flex gap-2 flex-wrap">
+                  <span class="px-3 py-1 rounded bg-neutral-900 text-neutral-300 text-xs">JavaScript</span>
+                  <span class="px-3 py-1 rounded bg-neutral-900 text-neutral-300 text-xs">Tailwind</span>
+                </div>
+
+                <div class="mt-4 flex gap-3">
+                  <a href="#" class="text-sm px-4 py-2 rounded bg-amber-400 text-neutral-900">Lihat detail</a>
+                  <a href="#" class="text-sm px-4 py-2 rounded border border-neutral-700">Live</a>
+                </div>
+              </div>
+              <div><img src="src/img/my-portofolio.png" alt="" class="pt-20"></div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="bg-neutral-800 rounded-xl border border-neutral-700 overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="60">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="md:col-span-1 p-6">
+                <h4 class="text-lg font-semibold">Website Toko Roti</h4>
+                <p class="text-sm text-neutral-400 mt-2">Landing page produk dengan animasi menarik.</p>
+
+                <div class="mt-4 flex gap-2 flex-wrap">
+                  <span class="px-3 py-1 rounded bg-neutral-900 text-neutral-300 text-xs">CSS</span>
+                  <span class="px-3 py-1 rounded bg-neutral-900 text-neutral-300 text-xs">JavaScript</span>
+                </div>
+
+                <div class="mt-4 flex gap-3">
+                  <a href="#" class="text-sm px-4 py-2 rounded bg-amber-400 text-neutral-900">Lihat detail</a>
+                  <a href="#" class="text-sm px-4 py-2 rounded border border-neutral-700">Live</a>
+                </div>
+              </div>
+
+               <div><img src="src/img/toko-roti.png" alt="" class="pt-20"></div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="bg-neutral-800 rounded-xl border border-neutral-700 overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="120">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="md:col-span-1 p-6 ">
+                <h4 class="text-lg font-semibold">Website Pabrik</h4>
+                <p class="text-sm text-neutral-400 mt-2">Website pribadi yang saya buat dengan Tailwind CSS.</p>
+
+                <div class="mt-4 flex gap-2 flex-wrap">
+                  <span class="px-3 py-1 rounded bg-neutral-900 text-neutral-300 text-xs">Tailwind CSS</span>
+                  <span class="px-3 py-1 rounded bg-neutral-900 text-neutral-300 text-xs">JavaScript</span>
+                </div>
+
+                <div class="mt-4 flex gap-3">
+                  <a href="#" class="text-sm px-4 py-2 rounded bg-amber-400 text-neutral-900">Lihat detail</a>
+                  <a href="#" class="text-sm px-4 py-2 rounded border border-neutral-700">Live</a>
+                </div>
+              </div>
+
+              <div><img src="src/img/website-pabrik.png" alt="" class="pt-20"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials (optional) -->
+    <section class="py-16 border-t border-neutral-800">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+        <h3 class="text-3xl font-extrabold">Testimoni</h3>
+        <p class="text-neutral-400 mt-2">Pendapat klien dan rekan kerja tentang kolaborasi kami.</p>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <div class="bg-neutral-800 p-6 rounded-xl border border-neutral-700">
+            <p class="text-neutral-300">"Ajun sangat membantu memperjelas arah desain dan berjalan cepat dalam eksekusi. Sangat direkomendasikan."</p>
+            <div class="mt-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center">AJ</div>
+              <div>
+                <div class="font-semibold">Budi</div>
+                <div class="text-xs text-neutral-400">CEO, Startup</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-neutral-800 p-6 rounded-xl border border-neutral-700">
+            <p class="text-neutral-300">"Solusi yang diberikan Ajun selalu mempertimbangkan performa dan user flow."</p>
+            <div class="mt-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center">SR</div>
+              <div>
+                <div class="font-semibold">Sari</div>
+                <div class="text-xs text-neutral-400">Product Manager</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-neutral-800 p-6 rounded-xl border border-neutral-700">
+            <p class="text-neutral-300">"Kerjasama yang lancar dan dokumentasi rapi membuat proses integrasi jadi mudah."</p>
+            <div class="mt-4 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center">DW</div>
+              <div>
+                <div class="font-semibold">Dewi</div>
+                <div class="text-xs text-neutral-400">CTO</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16 border-t border-neutral-800">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-8 items-start">
+        <div data-aos="fade-right">
+          <h3 class="text-3xl font-extrabold">Hubungi Saya</h3>
+          <p class="text-neutral-400 mt-2">Punya proyek atau ingin diskusi? Isi form atau hubungi saya lewat kontak di bawah.</p>
+
+          <div class="mt-6 bg-neutral-800 p-6 rounded-xl border border-neutral-700">
+            <h4 class="font-medium">Informasi Kontak</h4>
+            <div class="mt-3 text-sm text-neutral-400">
+              <p>Email: <a href="mailto:ajun@example.com" class="text-amber-300">ajunarfianto@gmail.com</a></p>
+              <p class="mt-1">Lokasi: Cilegon-Indonesia</p>
+              <p class="mt-1">Telepon: +62 812-9341-7366</p>
+            </div>
+
+            <div class="mt-6 flex gap-3">
+              <a href="#" class="px-3 py-2 rounded bg-neutral-900 border border-neutral-700">LinkedIn</a>
+              <a href="#" class="px-3 py-2 rounded bg-neutral-900 border border-neutral-700">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <form class="bg-neutral-800 p-6 rounded-xl border border-neutral-700 space-y-4">
+            <div>
+              <label class="text-sm text-neutral-300">Nama</label>
+              <input type="text" name="name" required class="w-full mt-2 p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-amber-400" />
+            </div>
+
+            <div>
+              <label class="text-sm text-neutral-300">Email</label>
+              <input type="email" name="email" required class="w-full mt-2 p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-amber-400" />
+            </div>
+
+            <div>
+              <label class="text-sm text-neutral-300">Pesan</label>
+              <textarea name="message" rows="5" required class="w-full mt-2 p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button type="submit" class="px-4 py-3 rounded bg-amber-400 text-neutral-900 font-medium">Kirim Pesan</button>
+              <button type="reset" class="px-4 py-3 rounded border border-neutral-700">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-neutral-800 py-8">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-neutral-900 font-extrabold">AA</div>
+          <div>
+            <div class="font-semibold">Ajun Arfianto</div>
+            <div class="text-xs text-neutral-400">© <span id="year"></span> All rights reserved</div>
+          </div>
+        </div>
+
+        <div class="text-sm text-neutral-400">Built with ❤️ using Tailwind CSS · Designed for accessibility</div>
+      </div>
+    </footer>
+
+    <!-- small utility modals / credits -->
+    <div id="toast" class="fixed bottom-6 right-6 hidden bg-neutral-900 border border-neutral-700 rounded-md p-3 text-sm">Copied to clipboard</div>
+
+    <!-- scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 700 });
+
+      // mobile menu toggle
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const menuOpen = document.getElementById('menu-open');
+      const menuClose = document.getElementById('menu-close');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menuOpen.classList.toggle('hidden');
+          menuClose.classList.toggle('hidden');
+        });
+      }
+
+      // smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#') return;
+          if (href.startsWith('#')) {
+            e.preventDefault();
+            const el = document.querySelector(href);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // close mobile menu after click
+            if (!menu.classList.contains('hidden')) menu.classList.add('hidden');
+          }
+        });
+      });
+
+      // set footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // small form handler (dummy)
+      const form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const toast = document.getElementById('toast');
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 1800);
+          form.reset();
+        });
+      }
+    </script>
+  </body>
+</html>
